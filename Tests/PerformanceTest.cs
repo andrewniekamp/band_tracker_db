@@ -79,5 +79,20 @@ namespace BandTracker
       Assert.Equal(testPerformance, foundPerformance);
     }
 
+    [Fact]
+    public void T6_GetBandName_GetsPerformanceBandName()
+    {
+      Band testBand = new Band("Brand New");
+      testBand.Save();
+      DateTime performanceDate = new DateTime(2016,08,04);
+
+      Performance testPerformance = new Performance(1, testBand.GetId(), performanceDate);
+      testPerformance.Save();
+
+      string result = testPerformance.GetBandName();
+
+      Assert.Equal("Brand New", result);
+    }
+
   }
 }

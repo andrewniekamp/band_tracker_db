@@ -12,8 +12,10 @@ namespace BandTracker
         Dictionary<string, object> model = new Dictionary<string, object>();
         List<Venue> allVenues = Venue.GetAll();
         List<Band> allBands = Band.GetAll();
+        List<Performance> allPerformances = Performance.GetAll();
         model.Add("venues", allVenues);
         model.Add("bands", allBands);
+        model.Add("performances", allPerformances);
         return View["index.cshtml", model];
       };
 
@@ -23,8 +25,10 @@ namespace BandTracker
         Dictionary<string, object> model = new Dictionary<string, object>();
         List<Venue> allVenues = Venue.GetAll();
         List<Band> allBands = Band.GetAll();
+        List<Performance> allPerformances = Performance.GetAll();
         model.Add("venues", allVenues);
         model.Add("bands", allBands);
+        model.Add("performances", allPerformances);
         return View["index.cshtml", model];
       };
 
@@ -34,8 +38,10 @@ namespace BandTracker
         Dictionary<string, object> model = new Dictionary<string, object>();
         List<Venue> allVenues = Venue.GetAll();
         List<Band> allBands = Band.GetAll();
+        List<Performance> allPerformances = Performance.GetAll();
         model.Add("venues", allVenues);
         model.Add("bands", allBands);
+        model.Add("performances", allPerformances);
         return View["index.cshtml", model];
       };
 
@@ -55,6 +61,19 @@ namespace BandTracker
         model.Add("venue", selectedVenue);
         model.Add("bands", venueBands);
         return View["venue.cshtml", model];
+      };
+
+      Post["/performance_added"] = _ => {
+        Performance newPerformance = new Performance(Request.Form["performance-venue"], Request.Form["performance-venue"], Request.Form["performance-date"]);
+        newPerformance.Save();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<Venue> allVenues = Venue.GetAll();
+        List<Band> allBands = Band.GetAll();
+        List<Performance> allPerformances = Performance.GetAll();
+        model.Add("venues", allVenues);
+        model.Add("bands", allBands);
+        model.Add("performances", allPerformances);
+        return View["index.cshtml", model];
       };
 
     }

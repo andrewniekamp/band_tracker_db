@@ -2,24 +2,34 @@
   Layout = "Views/Shared/_Layout.cshtml";
 }
 
-<form class="" action="/success" method="post">
+<form action="/performance_added" method="post">
   <div class="container">
     <h4>Add a New Performance</h4>
 
-    <label for="performance-venue">Venue</label>
-    <input type="text" name="performance-venue">
+    <label for='performance-venue'>Select a category</label>
+    <select name='performance-venue' type='text'>
+      @foreach (var venue in @Model["venues"])
+      {
+        <option value='@venue.GetId()'>@venue.GetName()</option>
+      }
+    </select>
 
-    <label for="performance-band">Band</label>
-    <input type="text" name="performance-band">
+    <label for='performance-band'>Select a category</label>
+    <select name='performance-band' type='text'>
+      @foreach (var band in @Model["bands"])
+      {
+        <option value='@band.GetId()'>@band.GetName()</option>
+      }
+    </select>
 
     <label for="performance-date">Date</label>
-    <input type="text" name="performance-date">
+    <input type="date" name="performance-date">
 
-    <button type="submit" name="button">Add Band</button>
+    <button type="submit" name="button">Add Performance</button>
   </div>
 </form>
 
-<h3>Venues</h3>
+<h2>Venues</h2>
 <form class="" action="/venue_added" method="post">
   <div class="container">
     <h4>Add a New Venue</h4>
@@ -43,7 +53,7 @@ else
   }
 }
 
-<h3>Bands</h3>
+<h2>Bands</h2>
 <form class="" action="/band_added" method="post">
   <div class="container">
     <h4>Add a New Band</h4>
@@ -63,6 +73,34 @@ else
     <h3>@band.GetName()</h3>
     <div class="container">
       <a href="/band/@band.GetId()">Performances by @band.GetName()</a>
+    </div>
+  }
+}
+
+<h3>All Performances</h3>
+@if (Model["performances"].Count == 0)
+{
+  <h3>There are no performances on record.</h3>
+}
+else
+{
+  foreach(var performance in Model["performances"])
+  {
+    Band newBand = Band.Find(performance.GetBandId());
+    Venue newVenue = Venue.Find(performance.GetVenueId());
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>@newBand.GetName()</h3>
+        </div>
+        <div class="col-sm-4">
+          <h3>@newVenue.GetName()</h3>
+        </div>
+        <div class="col-sm-4">
+
+          <h3>@performance.GetPerformanceDate()</h3>
+        </div>
+      </div>
     </div>
   }
 }
