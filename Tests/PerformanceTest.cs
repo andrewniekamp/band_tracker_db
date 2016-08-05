@@ -94,5 +94,20 @@ namespace BandTracker
       Assert.Equal("Brand New", result);
     }
 
+    [Fact]
+    public void T7_GetVenueName_GetsPerformanceVenueName()
+    {
+      Venue testVenue = new Venue("Paramount Theatre");
+      testVenue.Save();
+      DateTime performanceDate = new DateTime(2016,08,04);
+
+      Performance testPerformance = new Performance(testVenue.GetId(), 1, performanceDate);
+      testPerformance.Save();
+
+      string result = testPerformance.GetVenueName();
+
+      Assert.Equal("Paramount Theatre", result);
+    }
+
   }
 }
