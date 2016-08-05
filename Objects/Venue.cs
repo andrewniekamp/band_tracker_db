@@ -15,6 +15,20 @@ namespace BandTracker
       _name = Name;
     }
 
+    public int GetId()
+    {
+      return _id;
+    }
+
+    public string GetName()
+    {
+      return _name;
+    }
+    public void SetName(string newName)
+    {
+      _name = newName;
+    }
+
     public static List<Venue> GetAll()
     {
       List<Venue> allVenues = new List<Venue>{};
@@ -52,7 +66,7 @@ namespace BandTracker
       SqlCommand cmd = new SqlCommand("INSERT INTO venues (name) OUTPUT INSERTED.id VALUES (@Name);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
-      nameParameter.ParameterName = "@VenueFirst";
+      nameParameter.ParameterName = "@Name";
       nameParameter.Value = this.GetName();
 
       cmd.Parameters.Add(nameParameter);
