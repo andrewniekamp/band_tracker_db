@@ -105,8 +105,37 @@ namespace BandTracker
 
     public static Venue Find(int id)
     {
-      Venue newVenue = new Venue("Epicodus Classroom");
-      return newVenue;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId;", conn);
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = id.ToString();
+
+      cmd.Parameters.Add(venueIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundVenueId = 0;
+      string foundVenueName = null;
+
+      while (rdr.Read())
+      {
+        foundVenueId = rdr.GetInt32(0);
+        foundVenueName = rdr.GetString(1);
+      }
+      Venue foundVenue = new Venue(foundVenueName, foundVenueId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundVenue;
     }
 
     public static void DeleteAll()
