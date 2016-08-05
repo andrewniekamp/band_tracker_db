@@ -70,5 +70,22 @@ namespace BandTracker
 
       Assert.Equal(testBand, foundBand);
     }
+
+    [Fact]
+    public void T6_GetVenues_RetrievesAllBandVenues()
+    {
+      Band testBand = new Band("Brand New");
+      testBand.Save();
+
+      Venue testVenue1 = new Venue("Paramount Theatre");
+      testVenue1.Save();
+      Venue testVenue2 = new Venue("Epicodus Classroom");
+      testVenue2.Save();
+
+      List<Venue> testVenues = new List<Venue> {testVenue1, testVenue2};
+      List<Venue> result = testBand.GetVenues();
+
+      Assert.Equal(testVenues, result);
+    }
   }
 }
