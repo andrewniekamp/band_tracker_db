@@ -23,5 +23,17 @@ namespace BandTracker
       int result = Venue.GetAll().Count;
       Assert.Equal(0, result);
     }
+
+    [Fact]
+    public void T3_Save_SavesToDB()
+    {
+      Venue testVenue = new Venue("Paramount Theatre");
+      testVenue.Save();
+
+      List<Venue> result = Venue.GetAll();
+      List<Venue> testList = new List<Venue>{testVenue};
+
+      Assert.Equal(testList, result);
+    }
   }
 }
