@@ -25,19 +25,19 @@
   </div>
 </form>
 @if (Model["venues"].Count == 0)
+{
+  <h3>There are no venues at this time.</h3>
+}
+else
+{
+  foreach(var venue in Model["venues"])
   {
-    <h3>There are no venues at this time.</h3>
+    <h3>@venue.GetName()</h3>
+    <div class="container">
+      <a href="/venue/@venue.GetId()">Performances at @venue.GetName()</a>
+    </div>
   }
-  else
-  {
-    foreach(var venue in Model["venues"])
-    {
-      <h3>@venue.GetName()</h3>
-      <div class="container">
-        <a href="/venue/@venue.GetId()">View All Performances at @venue.GetName()</a>
-      </div>
-    }
-  }
+}
 
 <h3>Bands</h3>
 <form class="" action="/band_added" method="post">
@@ -49,16 +49,16 @@
   </div>
 </form>
 @if (Model["bands"].Count == 0)
+{
+  <h3>There are no bands at this time.</h3>
+}
+else
+{
+  foreach(var band in Model["bands"])
   {
-    <h3>There are no bands at this time.</h3>
+    <h3>@band.GetName()</h3>
+    <div class="container">
+      <a href="/band/@band.GetId()">Performances by @band.GetName()</a>
+    </div>
   }
-  else
-  {
-    foreach(var band in Model["bands"])
-    {
-      <h3>@band.GetName()</h3>
-      <div class="container">
-        <a href="/band/@band.GetId()">View All Performances at @band.GetName()</a>
-      </div>
-    }
-  }
+}
