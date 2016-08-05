@@ -103,6 +103,12 @@ namespace BandTracker
       }
     }
 
+    public static Band Find(int id)
+    {
+      Band newBand = new Band("Justin Bieber");
+      return newBand;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
