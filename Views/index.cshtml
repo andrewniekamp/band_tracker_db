@@ -1,4 +1,29 @@
+<form class="" action="/success" method="post">
+  <div class="container">
+    <h4>Add a New Performance</h4>
+
+    <label for="performance-venue">Venue</label>
+    <input type="text" name="performance-venue">
+
+    <label for="performance-band">Band</label>
+    <input type="text" name="performance-band">
+
+    <label for="performance-date">Date</label>
+    <input type="text" name="performance-date">
+
+    <button type="submit" name="button">Add Band</button>
+  </div>
+</form>
+
 <h3>Venues</h3>
+<form class="" action="/success" method="post">
+  <div class="container">
+    <h4>Add a New Venue</h4>
+    <label for="add-venue">Venue Name</label>
+    <input type="text" name="add-venue">
+    <button type="submit" name="button">Add Venue</button>
+  </div>
+</form>
 @if (Model["venues"].Count == 0)
   {
     <h3>There are no venues at this time.</h3>
@@ -15,6 +40,14 @@
   }
 
 <h3>Bands</h3>
+<form class="" action="/success" method="post">
+  <div class="container">
+    <h4>Add a New Band</h4>
+    <label for="add-band">Band Name</label>
+    <input type="text" name="add-band">
+    <button type="submit" name="button">Add Band</button>
+  </div>
+</form>
 @if (Model["bands"].Count == 0)
   {
     <h3>There are no bands at this time.</h3>
