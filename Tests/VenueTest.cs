@@ -44,5 +44,18 @@ namespace BandTracker
 
       Assert.Equal(testList, result);
     }
+
+    [Fact]
+    public void T4_Save_AssignsIdToVenue()
+    {
+      Venue testVenue = new Venue("Paramount Theatre");
+      testVenue.Save();
+
+      Venue savedVenue = Venue.GetAll()[0];
+      int result = savedVenue.GetId();
+      int testId = testVenue.GetId();
+
+      Assert.Equal(testId, result);
+    }
   }
 }
