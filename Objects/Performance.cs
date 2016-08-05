@@ -134,34 +134,34 @@ namespace BandTracker
 
     public string GetVenueName()
     {
-      // SqlConnection conn = DB.Connection();
-      // conn.Open();
-      //
-      // SqlCommand cmd = new SqlCommand("SELECT name FROM bands WHERE id = @BandId;", conn);
-      // SqlParameter bandIdParameter = new SqlParameter();
-      // bandIdParameter.ParameterName = "@BandId";
-      // bandIdParameter.Value = this.GetBandId();
-      //
-      // cmd.Parameters.Add(bandIdParameter);
-      //
-      // SqlDataReader rdr = cmd.ExecuteReader();
-      //
-      string foundBandName = "";
-      //
-      // while (rdr.Read())
-      // {
-      //   foundBandName = rdr.GetString(0);
-      // }
-      //
-      // if (rdr != null)
-      // {
-      //   rdr.Close();
-      // }
-      // if (conn != null)
-      // {
-      //   conn.Close();
-      // }
-      return foundBandName;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT name FROM venues WHERE id = @VenueId;", conn);
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = this.GetVenueId();
+
+      cmd.Parameters.Add(venueIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      string foundVenueName = "";
+
+      while (rdr.Read())
+      {
+        foundVenueName = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundVenueName;
     }
 
     public void Save()
