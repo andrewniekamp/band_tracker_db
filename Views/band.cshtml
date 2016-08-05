@@ -1,0 +1,13 @@
+<h2>@Model["band"].GetName()</h2>
+
+@if (Model["venues"].Count == 0)
+{
+  <h3>There are no venues at this time.</h3>
+}
+else
+{
+  foreach(var venue in Model["venues"])
+  {
+    <h3>@venue.GetName()</h3>
+  }
+}
