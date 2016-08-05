@@ -6,12 +6,15 @@
 
 @if (Model["bands"].Count == 0)
 {
-  <h3>There are no bands at this time.</h3>
+  <h3 class="center">This venue does not have any tracked performances at this time.</h3>
 }
 else
 {
   foreach(var band in Model["bands"])
   {
-    <h3>@band.GetName()</h3>
+    <h4>@band.GetName()</h4>
   }
 }
+<div class="content-name">
+  <a class="link-name" href="/">Home</a>
+</div>

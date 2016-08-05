@@ -4,37 +4,45 @@
 
 <form action="/performance_added" method="post">
   <div class="container">
-    <h4>Add a New Performance</h4>
+    <h4 class="center">Add a New Performance</h4>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <label for='performance-venue'>Venue</label>
+          <select required class="user-input" name='performance-venue' type='text'>
+            @foreach (var venue in @Model["venues"])
+            {
+              <option value='@venue.GetId()'>@venue.GetName()</option>
+            }
+          </select>
+        </div>
 
-    <label for='performance-venue'>Select a category</label>
-    <select name='performance-venue' type='text'>
-      @foreach (var venue in @Model["venues"])
-      {
-        <option value='@venue.GetId()'>@venue.GetName()</option>
-      }
-    </select>
+        <div class="col-sm-12">
+          <label for='performance-band'>Band</label>
+          <select required class="user-input" name='performance-band' type='text'>
+            @foreach (var band in @Model["bands"])
+            {
+              <option value='@band.GetId()'>@band.GetName()</option>
+            }
+          </select>
+        </div>
 
-    <label for='performance-band'>Select a category</label>
-    <select name='performance-band' type='text'>
-      @foreach (var band in @Model["bands"])
-      {
-        <option value='@band.GetId()'>@band.GetName()</option>
-      }
-    </select>
-
-    <label for="performance-date">Date</label>
-    <input type="date" name="performance-date">
-
-    <div class="center">
-      <button class="btn app-btn" type="submit" name="button">Add Performance</button>
+        <div class="col-md-12">
+          <label for="performance-date">Date</label>
+          <input required class="user-input" type="date" name="performance-date">
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="center">
+    <button class="btn app-btn" type="submit" name="button">Add Performance</button>
   </div>
 </form>
 
 <h3 class="center">All Performances</h3>
 @if (Model["performances"].Count == 0)
 {
-  <h3>There are no performances on record.</h3>
+  <h3 class="center">There are no performances on record.</h3>
 }
 else
 {
@@ -76,7 +84,7 @@ else
       <form class="" action="/venue_added" method="post">
         <h4>Add a New Venue</h4>
         <label for="venue-name">Venue Name</label>
-        <input type="text" name="venue-name">
+        <input class="user-input" type="text" name="venue-name">
         <div class="center">
           <button class="btn app-btn" type="submit" name="button">Add Venue</button>
         </div>
@@ -100,7 +108,7 @@ else
       <form class="" action="/band_added" method="post">
         <h4>Add a New Band</h4>
         <label for="band-name">Band Name</label>
-        <input type="text" name="band-name">
+        <input class="user-input" type="text" name="band-name">
         <div class="center">
           <button class="btn app-btn" type="submit" name="button">Add Band</button>
         </div>
@@ -121,3 +129,9 @@ else
     </div>
   </div>
 </div>
+
+<form action="/delete_all" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  ADMIN USE ONLY<br>
+  <button class="btn" type="submit">Delete All Data</button>
+</form>

@@ -1,9 +1,18 @@
+body {
+  font-family: "Righteous", sans-serif;
+}
+
 #logo {
   width: 40vw;
 }
 
 .logo-container, .title-container, .listing {
   text-align: center;
+}
+.user-input {
+  height: 40px;
+  font-size: 16px;
+  width: 100%;
 }
 
 .column-header {
@@ -31,6 +40,7 @@
   width: 80%;
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .app-btn:hover {

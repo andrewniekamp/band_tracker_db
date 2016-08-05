@@ -64,8 +64,22 @@ namespace BandTracker
       };
 
       Post["/performance_added"] = _ => {
-        Performance newPerformance = new Performance(Request.Form["performance-venue"], Request.Form["performance-venue"], Request.Form["performance-date"]);
+        Performance newPerformance = new Performance(Request.Form["performance-venue"], Request.Form["performance-band"], Request.Form["performance-date"]);
         newPerformance.Save();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<Venue> allVenues = Venue.GetAll();
+        List<Band> allBands = Band.GetAll();
+        List<Performance> allPerformances = Performance.GetAll();
+        model.Add("venues", allVenues);
+        model.Add("bands", allBands);
+        model.Add("performances", allPerformances);
+        return View["index.cshtml", model];
+      };
+
+      Delete["/delete_all"] = _ => {
+        Venue.DeleteAll();
+        Band.DeleteAll();
+        Performance.DeleteAll();
         Dictionary<string, object> model = new Dictionary<string, object>();
         List<Venue> allVenues = Venue.GetAll();
         List<Band> allBands = Band.GetAll();
