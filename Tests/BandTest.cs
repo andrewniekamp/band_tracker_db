@@ -23,5 +23,14 @@ namespace BandTracker
       int result = Band.GetAll().Count;
       Assert.Equal(0, result);
     }
+
+    [Fact]
+    public void T2_Equal_ReturnsTrueIfBandIsSame()
+    {
+      Band firstBand = new Band("Brand New");
+      Band secondBand = new Band("Brand New");
+
+      Assert.Equal(firstBand, secondBand);
+    }
   }
 }
