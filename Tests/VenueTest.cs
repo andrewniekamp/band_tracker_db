@@ -25,6 +25,15 @@ namespace BandTracker
     }
 
     [Fact]
+    public void T2_Equal_ReturnsTrueIfVenueIsSame()
+    {
+      Venue firstVenue = new Venue("Paramount Theatre");
+      Venue secondVenue = new Venue("Paramount Theatre");
+
+      Assert.Equal(firstVenue, secondVenue);
+    }
+
+    [Fact]
     public void T3_Save_SavesToDB()
     {
       Venue testVenue = new Venue("Paramount Theatre");
