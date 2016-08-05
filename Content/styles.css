@@ -43,6 +43,20 @@ body {
   font-size: 18px;
 }
 
+.admin-btn {
+  background-color: darkred;
+  border-radius: 0;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.admin-btn:hover {
+  background-color: black;
+  color: white;
+}
+
 .app-btn:hover {
   background-color: black;
   color: white;

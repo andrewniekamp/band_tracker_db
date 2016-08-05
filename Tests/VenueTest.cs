@@ -123,5 +123,26 @@ namespace BandTracker
 
       Assert.Equal(testBands, result);
     }
+
+    [Fact]
+    public void T9_DeleteAssociations_DeletesAssociationsFromJoin()
+    {
+      Venue testVenue = new Venue("Paramount Theatre");
+      testVenue.Save();
+
+      Band testBand = new Band("Brand New");
+      testBand.Save();
+
+      DateTime performanceDate = new DateTime(2016,08,04);
+
+      Performance newPerformance = new Performance(testVenue.GetId(), testBand.GetId(), performanceDate);
+      newPerformance.Save();
+
+      testVenue.DeleteAssociations();
+
+      int result = Performance.GetAll().Count;
+
+      Assert.Equal(0, result);
+    }
   }
 }

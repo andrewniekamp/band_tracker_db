@@ -2,7 +2,18 @@
   Layout = "Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model["venue"].GetName()</h2>
+  <form class="" action="/venue/@Model["venue"].GetId()" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="rename">Rename Venue</label>
+    <input class="user-input" type="text" name="rename" value="@Model["venue"].GetName()">
+    <button class="btn admin-btn" type="submit" name="button">Update Venue Name</button>
+  </form>
+  <form class="" action="/deleted/@Model["venue"].GetId()" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <label for="rename">Delete Venue</label>
+    <input class="user-input" type="text" name="rename" value="@Model["venue"].GetName()">
+    <button class="btn admin-btn" type="submit" name="button">Delete Venue</button>
+  </form>
 
 @if (Model["bands"].Count == 0)
 {
@@ -10,6 +21,7 @@
 }
 else
 {
+  <h2>Bands Performing at @Model["venue"].GetName()</h2>
   foreach(var band in Model["bands"])
   {
     <h4>@band.GetName()</h4>
