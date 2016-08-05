@@ -36,5 +36,20 @@ namespace BandTracker
 
       Assert.Equal(firstPerformance, secondPerformance);
     }
+
+    [Fact]
+    public void T3_Save_SavesToDB()
+    {
+      DateTime performanceDate = new DateTime(2016,08,04);
+
+      Performance testPerformance = new Performance(1, 2, performanceDate);
+      testPerformance.Save();
+
+      List<Performance> result = Performance.GetAll();
+      List<Performance> testList = new List<Performance>{testPerformance};
+
+      Assert.Equal(testList, result);
+    }
+
   }
 }
