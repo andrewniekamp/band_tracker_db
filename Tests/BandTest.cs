@@ -32,5 +32,17 @@ namespace BandTracker
 
       Assert.Equal(firstBand, secondBand);
     }
+
+    [Fact]
+    public void T3_Save_SavesToDB()
+    {
+      Band testBand = new Band("Brand New");
+      testBand.Save();
+
+      List<Band> result = Band.GetAll();
+      List<Band> testList = new List<Band>{testBand};
+
+      Assert.Equal(testList, result);
+    }
   }
 }

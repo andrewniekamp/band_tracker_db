@@ -74,6 +74,11 @@ namespace BandTracker
       return allBands;
     }
 
+    public void Save()
+    {
+
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
