@@ -82,6 +82,14 @@ namespace BandTracker
       Venue testVenue2 = new Venue("Epicodus Classroom");
       testVenue2.Save();
 
+      DateTime performanceDate1 = new DateTime(2016,08,04);
+      DateTime performanceDate2 = new DateTime(2016,09,20);
+
+      Performance newPerformance1 = new Performance(testVenue1.GetId(), testBand.GetId(), performanceDate1);
+      newPerformance1.Save();
+      Performance newPerformance2 = new Performance(testVenue2.GetId(), testBand.GetId(), performanceDate2);
+      newPerformance2.Save();
+
       List<Venue> testVenues = new List<Venue> {testVenue1, testVenue2};
       List<Venue> result = testBand.GetVenues();
 
