@@ -51,5 +51,20 @@ namespace BandTracker
       Assert.Equal(testList, result);
     }
 
+    [Fact]
+    public void T4_Save_AssignsIdToPerformance()
+    {
+      DateTime performanceDate = new DateTime(2016,08,04);
+
+      Performance testPerformance = new Performance(1, 2, performanceDate);
+      testPerformance.Save();
+
+      Performance savedPerformance = Performance.GetAll()[0];
+      int result = savedPerformance.GetId();
+      int testId = testPerformance.GetId();
+
+      Assert.Equal(testId, result);
+    }
+
   }
 }
