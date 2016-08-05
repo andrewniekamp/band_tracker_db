@@ -19,5 +19,13 @@ namespace BandTracker
       _performanceDate = performanceDate;
     }
 
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM performances;", conn);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+    }
   }
 }

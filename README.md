@@ -30,7 +30,7 @@ _To use the database, in SQLCMD:_
 
 \>CREATE TABLE bands (id INT IDENTITY (1,1), name VARCHAR(255));
 
-\>CREATE TABLE concerts (id INT IDENTITY (1,1), venue_id INT, band_id INT, performance_date DATETIME);
+\>CREATE TABLE performances (id INT IDENTITY (1,1), venue_id INT, band_id INT, performance_date DATETIME);
 
 \>GO
 
