@@ -25,80 +25,99 @@
     <label for="performance-date">Date</label>
     <input type="date" name="performance-date">
 
-    <button type="submit" name="button">Add Performance</button>
-  </div>
-</form>
-
-<h2>Venues</h2>
-<form class="" action="/venue_added" method="post">
-  <div class="container">
-    <h4>Add a New Venue</h4>
-    <label for="venue-name">Venue Name</label>
-    <input type="text" name="venue-name">
-    <button type="submit" name="button">Add Venue</button>
-  </div>
-</form>
-@if (Model["venues"].Count == 0)
-{
-  <h3>There are no venues at this time.</h3>
-}
-else
-{
-  foreach(var venue in Model["venues"])
-  {
-    <h3>@venue.GetName()</h3>
-    <div class="container">
-      <a href="/venue/@venue.GetId()">Performances at @venue.GetName()</a>
+    <div class="center">
+      <button class="btn app-btn" type="submit" name="button">Add Performance</button>
     </div>
-  }
-}
-
-<h2>Bands</h2>
-<form class="" action="/band_added" method="post">
-  <div class="container">
-    <h4>Add a New Band</h4>
-    <label for="band-name">Band Name</label>
-    <input type="text" name="band-name">
-    <button type="submit" name="button">Add Band</button>
   </div>
 </form>
-@if (Model["bands"].Count == 0)
-{
-  <h3>There are no bands at this time.</h3>
-}
-else
-{
-  foreach(var band in Model["bands"])
-  {
-    <h3>@band.GetName()</h3>
-    <div class="container">
-      <a href="/band/@band.GetId()">Performances by @band.GetName()</a>
-    </div>
-  }
-}
 
-<h3>All Performances</h3>
+<h3 class="center">All Performances</h3>
 @if (Model["performances"].Count == 0)
 {
   <h3>There are no performances on record.</h3>
 }
 else
 {
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4 column-header">
+        <h4>Band</h4>
+      </div>
+      <div class="col-xs-4 column-header">
+        <h4>Venue</h4>
+      </div>
+      <div class="col-xs-4 column-header">
+        <h4>Date</h4>
+      </div>
+    </div>
+  </div>
   foreach(var performance in Model["performances"])
   {
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-xs-4 listing">
           <h4>@performance.GetBandName()</h4>
         </div>
-        <div class="col-sm-4">
-          <h4></h4>
+        <div class="col-xs-4 listing">
+          <h4>@performance.GetVenueName()</h4>
         </div>
-        <div class="col-sm-4">
-
+        <div class="col-xs-4 listing">
           <h4>@performance.GetPerformanceDate()</h4>
         </div>
       </div>
     </div>
   }
 }
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Venues</h2>
+      <form class="" action="/venue_added" method="post">
+        <h4>Add a New Venue</h4>
+        <label for="venue-name">Venue Name</label>
+        <input type="text" name="venue-name">
+        <div class="center">
+          <button class="btn app-btn" type="submit" name="button">Add Venue</button>
+        </div>
+      </form>
+      @if (Model["venues"].Count == 0)
+      {
+        <h3>There are no venues at this time.</h3>
+      }
+      else
+      {
+        foreach(var venue in Model["venues"])
+        {
+          <div class="content-name">
+            <a class="link-name" href="/venue/@venue.GetId()">@venue.GetName()</a>
+          </div>
+        }
+      }
+    </div>
+    <div class="col-sm-6">
+      <h2>Bands</h2>
+      <form class="" action="/band_added" method="post">
+        <h4>Add a New Band</h4>
+        <label for="band-name">Band Name</label>
+        <input type="text" name="band-name">
+        <div class="center">
+          <button class="btn app-btn" type="submit" name="button">Add Band</button>
+        </div>
+      </form>
+      @if (Model["bands"].Count == 0)
+      {
+        <h3>There are no bands at this time.</h3>
+      }
+      else
+      {
+        foreach(var band in Model["bands"])
+        {
+          <div class="content-name">
+            <a class="link-name" href="/band/@band.GetId()">@band.GetName()</a>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>

@@ -2,6 +2,47 @@
   width: 40vw;
 }
 
-.logo-container, .title-container {
+.logo-container, .title-container, .listing {
   text-align: center;
+}
+
+.column-header {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.content-name {
+  border-left: 4px solid indigo;
+  padding-left: 10px;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.app-btn {
+  background-color: black;
+  border-radius: 0;
+  color: white;
+  width: 80%;
+}
+
+.app-btn:hover {
+  background-color: #aaa;
+  color: indigo;
+}
+
+.link-name {
+  color: darkred;
+}
+
+.link-name:visited {
+  color: grey;
+}
+
+.link-name:hover {
+  color: indigo;
 }
