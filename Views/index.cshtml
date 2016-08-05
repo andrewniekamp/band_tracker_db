@@ -86,19 +86,17 @@ else
 {
   foreach(var performance in Model["performances"])
   {
-    Band newBand = Band.Find(performance.GetBandId());
-    Venue newVenue = Venue.Find(performance.GetVenueId());
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-          <h3>@newBand.GetName()</h3>
+          <h4>@performance.GetBandName()</h4>
         </div>
         <div class="col-sm-4">
-          <h3>@newVenue.GetName()</h3>
+          <h4></h4>
         </div>
         <div class="col-sm-4">
 
-          <h3>@performance.GetPerformanceDate()</h3>
+          <h4>@performance.GetPerformanceDate()</h4>
         </div>
       </div>
     </div>
