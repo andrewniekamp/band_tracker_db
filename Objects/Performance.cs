@@ -19,6 +19,37 @@ namespace BandTracker
       _performanceDate = performanceDate;
     }
 
+    public static List<Performance> GetAll()
+    {
+      List<Performance> allPerformances = new List<Performance>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM performances;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        int performanceId = rdr.GetInt32(0);
+        int venueId = rdr.GetInt32(1);
+        int bandId = rdr.GetInt32(2);
+        DateTime performanceDate = rdr.GetDateTime(3);
+
+        Performance newPerformance = new Performance(venueId, bandId, performanceDate, performanceId);
+        allPerformances.Add(newPerformance);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return allPerformances;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
