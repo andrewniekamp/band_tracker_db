@@ -9,10 +9,10 @@ namespace BandTracker
     private int _id;
     private string _name;
 
-    public Venue(string Name, int Id = 0)
+    public Venue(string name, int id = 0)
     {
-      _id = Id;
-      _name = Name;
+      _id = id;
+      _name = name;
     }
 
     public override bool Equals(System.Object otherVenue)
@@ -136,6 +136,11 @@ namespace BandTracker
         conn.Close();
       }
       return foundVenue;
+    }
+
+    public void Update(string newName)
+    {
+
     }
 
     public static void DeleteAll()
