@@ -25,5 +25,16 @@ namespace BandTracker
       int result = Performance.GetAll().Count;
       Assert.Equal(0, result);
     }
+
+    [Fact]
+    public void T2_Equal_ReturnsTrueIfPerformanceIsSame()
+    {
+      DateTime performanceDate = new DateTime(2016,08,04);
+
+      Performance firstPerformance = new Performance(1, 2, performanceDate);
+      Performance secondPerformance = new Performance(1, 2, performanceDate);
+
+      Assert.Equal(firstPerformance, secondPerformance);
+    }
   }
 }

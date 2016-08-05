@@ -19,6 +19,56 @@ namespace BandTracker
       _performanceDate = performanceDate;
     }
 
+    public int GetId()
+    {
+      return _id;
+    }
+
+    public int GetVenueId()
+    {
+      return _venueId;
+    }
+    public void SetVenueId(int newVenueId)
+    {
+      _venueId = newVenueId;
+    }
+
+    public int GetBandId()
+    {
+      return _bandId;
+    }
+    public void SetBandId(int newBandId)
+    {
+      _bandId = newBandId;
+    }
+
+    public string GetPerformanceDate()
+    {
+      return _bandId.ToString("MM/dd/yyyy");
+    }
+    public void SetVenueId(DateTime newPerformanceDate)
+    {
+      _performanceDate = newPerformanceDate;
+    }
+
+    public override bool Equals(System.Object otherPerformance)
+    {
+      if (!(otherPerformance is Performance))
+      {
+        return false;
+      }
+      else
+      {
+        Performance newPerformance = (Performance) otherPerformance;
+        bool idEquality = this.GetId() == newPerformance.GetId();
+        bool venueIdEquality = this.GetVenueId() == newPerformance.GetVenueId();
+        bool bandIdEquality = this.GetBandId() == newPerformance.GetBandId();
+        bool performanceDateEquality = this.GetPerformanceDate() == newPerformance.GetPerformanceDate();
+
+        return (idEquality && venueIdEquality && bandIdEquality && performanceDateEquality);
+      }
+    }
+
     public static List<Performance> GetAll()
     {
       List<Performance> allPerformances = new List<Performance>{};
