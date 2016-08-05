@@ -81,5 +81,20 @@ namespace BandTracker
 
       Assert.Equal(newName, result);
     }
+
+    [Fact]
+    public void T7_Delete_DeleteVenueFromDB()
+    {
+      Venue testVenue1 = new Venue("Epicodus Classroom");
+      testVenue1.Save();
+      Venue testVenue2 = new Venue("Paramount Theatre");
+      testVenue2.Save();
+
+      testVenue1.Delete();
+      List<Venue> result = Venue.GetAll();
+      List<Venue> testVenues = new List<Venue>{testVenue2};
+
+      Assert.Equal(testVenues, result);
+    }
   }
 }
