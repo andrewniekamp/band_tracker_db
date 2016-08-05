@@ -98,5 +98,30 @@ namespace BandTracker
 
       Assert.Equal(testVenues, result);
     }
+
+    [Fact]
+    public void T8_GetBands_RetrievesAllVenueBands()
+    {
+      Venue testVenue = new Venue("Paramount Theatre");
+      testVenue.Save();
+
+      Band testBand1 = new Band("Brand New");
+      testBand1.Save();
+      Band testBand2 = new Band("A Little Old");
+      testBand2.Save();
+
+      DateTime performanceDate1 = new DateTime(2016,08,04);
+      DateTime performanceDate2 = new DateTime(2016,09,20);
+
+      Performance newPerformance1 = new Performance(testVenue.GetId(), testBand1.GetId(), performanceDate1);
+      newPerformance1.Save();
+      Performance newPerformance2 = new Performance(testVenue.GetId(), testBand2.GetId(), performanceDate2);
+      newPerformance2.Save();
+
+      List<Band> testBands = new List<Band> {testBand1, testBand2};
+      List<Band> result = testVenue.GetBands();
+
+      Assert.Equal(testBands, result);
+    }
   }
 }

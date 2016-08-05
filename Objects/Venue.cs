@@ -172,6 +172,41 @@ namespace BandTracker
         conn.Close();
       }
     }
+    public List<Band> GetBands()
+    {
+      // SqlConnection conn = DB.Connection();
+      // conn.Open();
+      //
+      // SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN performances ON (bands.id = performances.band_id) JOIN venues ON (performances.venue_id = venues.id) WHERE bands.id = @BandId;", conn);
+      //
+      // SqlParameter bandIdParameter = new SqlParameter();
+      // bandIdParameter.ParameterName = "@BandId";
+      // bandIdParameter.Value = this.GetId().ToString();
+      //
+      // cmd.Parameters.Add(bandIdParameter);
+      //
+      // SqlDataReader rdr = cmd.ExecuteReader();
+      List<Band> bands = new List<Band>{};
+      //
+      // while(rdr.Read())
+      // {
+      //   int venueId = rdr.GetInt32(0);
+      //   string venueName = rdr.GetString(1);
+      //   Venue newVenue = new Venue(venueName, venueId);
+      //   venues.Add(newVenue);
+      // }
+      //
+      // if (rdr != null)
+      // {
+      //   rdr.Close();
+      // }
+      //
+      // if (conn != null)
+      // {
+      //   conn.Close();
+      // }
+      return bands;
+    }
 
     public void Delete()
     {
