@@ -44,7 +44,7 @@ namespace BandTracker
 
     public string GetPerformanceDate()
     {
-      return _bandId.ToString("MM/dd/yyyy");
+      return _performanceDate.ToString("MM/dd/yyyy");
     }
     public void SetVenueId(DateTime newPerformanceDate)
     {
@@ -102,7 +102,40 @@ namespace BandTracker
 
     public void Save()
     {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("INSERT INTO performances (venue_id, band_id, performance_date) OUTPUT INSERTED.id VALUES (@VenueId, @BandId, @PerformanceDate);", conn);
+
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = this.GetVenueId();
+      cmd.Parameters.Add(venueIdParameter);
+
+      SqlParameter bandIdParameter = new SqlParameter();
+      bandIdParameter.ParameterName = "@BandId";
+      bandIdParameter.Value = this.GetBandId();
+      cmd.Parameters.Add(bandIdParameter);
+
+      SqlParameter performanceDateParameter = new SqlParameter();
+      performanceDateParameter.ParameterName = "@PerformanceDate";
+      performanceDateParameter.Value = this.GetPerformanceDate();
+      cmd.Parameters.Add(performanceDateParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()
