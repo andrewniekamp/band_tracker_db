@@ -138,6 +138,46 @@ namespace BandTracker
       }
     }
 
+    public static Performance Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM performances WHERE id = @PerformanceId;", conn);
+      SqlParameter performanceIdParameter = new SqlParameter();
+      performanceIdParameter.ParameterName = "@PerformanceId";
+      performanceIdParameter.Value = id.ToString();
+
+      cmd.Parameters.Add(performanceIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundPerformanceId = 0;
+      int foundVenueId = 0;
+      int foundBandId = 0;
+      DateTime foundPerformanceDate = DateTime.MinValue;
+
+      while (rdr.Read())
+      {
+        foundPerformanceId = rdr.GetInt32(0);
+        foundVenueId = rdr.GetInt32(1);
+        foundBandId = rdr.GetInt32(2);
+        foundPerformanceDate = rdr.GetDateTime(3);
+      }
+      Performance foundPerformance = new Performance(foundVenueId, foundBandId, foundPerformanceDate, foundPerformanceId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundPerformance;
+    }
+
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

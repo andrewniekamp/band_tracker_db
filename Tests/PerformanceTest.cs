@@ -66,5 +66,18 @@ namespace BandTracker
       Assert.Equal(testId, result);
     }
 
+    [Fact]
+    public void T5_Find_FindsPerformanceInDB()
+    {
+      DateTime performanceDate = new DateTime(2016,08,04);
+
+      Performance testPerformance = new Performance(1, 2, performanceDate);
+      testPerformance.Save();
+
+      Performance foundPerformance = Performance.Find(testPerformance.GetId());
+
+      Assert.Equal(testPerformance, foundPerformance);
+    }
+
   }
 }
