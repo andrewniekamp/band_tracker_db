@@ -164,6 +164,7 @@ namespace BandTracker
         foundBandId = rdr.GetInt32(2);
         foundPerformanceDate = rdr.GetDateTime(3);
       }
+      
       Performance foundPerformance = new Performance(foundVenueId, foundBandId, foundPerformanceDate, foundPerformanceId);
 
       if (rdr != null)
