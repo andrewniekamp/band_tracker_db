@@ -1,0 +1,8 @@
+@if (Model.GetName() != null)
+{
+  <h3>@Model.GetName() added!</h3>
+}
+else if (Model.GetPerformanceDate != null)
+{
+  <h3>See you on @Model.GetPerformanceDate()!</h3>
+}
