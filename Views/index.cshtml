@@ -1,0 +1,31 @@
+<h3>Venues</h3>
+@if (Model["venues"].Count == 0)
+  {
+    <h3>There are no venues at this time.</h3>
+  }
+  else
+  {
+    foreach(var venue in Model["venues"])
+    {
+      <h3>@venue.GetName()</h3>
+      <div class="container">
+        <a href="/performances/@venue.GetId()">View All Performances at @venue.GetName()</a>
+      </div>
+    }
+  }
+
+<h3>Bands</h3>
+@if (Model["bands"].Count == 0)
+  {
+    <h3>There are no bands at this time.</h3>
+  }
+  else
+  {
+    foreach(var band in Model["bands"])
+    {
+      <h3>@band.GetName()</h3>
+      <div class="container">
+        <a href="/performances/@band.GetId()">View All Performances at @band.GetName()</a>
+      </div>
+    }
+  }
