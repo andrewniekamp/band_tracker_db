@@ -103,6 +103,12 @@ namespace BandTracker
       }
     }
 
+    public static Venue Find(int id)
+    {
+      Venue newVenue = new Venue("Epicodus Classroom");
+      return newVenue;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

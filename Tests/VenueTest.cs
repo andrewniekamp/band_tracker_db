@@ -57,5 +57,16 @@ namespace BandTracker
 
       Assert.Equal(testId, result);
     }
+
+    [Fact]
+    public void T5_Find_FindsVenueInDB()
+    {
+      Venue testVenue = new Venue("Paramount Theatre");
+      testVenue.Save();
+
+      Venue foundVenue = Venue.Find(testVenue.GetId());
+
+      Assert.Equal(testVenue, foundVenue);
+    }
   }
 }
